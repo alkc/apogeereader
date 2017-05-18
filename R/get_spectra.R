@@ -4,7 +4,7 @@ get_spectra <- function(file) {
     if(length(file) > 1) {
         data <- dplyr::bind_rows(lapply(file, read_specwiz_spectral_data))
     } else {
-        data <- read_spectrawiz_file(file)
+        data <- read_specwiz_spectral_data(file)
     }
 
     data
