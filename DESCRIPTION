@@ -1,0 +1,9 @@
+Package: spectrawizerader
+Title: What the Package Does (one line, title case)
+Version: 0.0.0.9000
+Authors@R: person("Alexander", "Koc", email = "first.last@example.com", role = c("aut", "cre"))
+Description: A package for reading spectral data obtained from SpectraWiz.
+Depends: R (>= 3.4.0)
+License: What license is it under?
+Encoding: UTF-8
+LazyData: true
