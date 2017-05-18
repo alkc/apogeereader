@@ -1,3 +1,4 @@
+#' @export
 get_metadata <- function(file, keep_old_filepath = FALSE) {
 
     file <- .trm_file()
