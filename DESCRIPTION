@@ -1,10 +1,17 @@
 Package: spectrawizreader
 Title: Lightweight package for reading files produced by Spectrawiz
-Version: 0.0.0.9000
+Version: 0.9.0
 Authors@R: person("Alexander", "Koc", email = "alexander.koc@slu.se", role = c("aut", "cre"))
 Description: A package for reading spectral data obtained from SpectraWiz.
+URL: http://github.com/alkc/spectrawizreader
+BugReports: http://github.com/alkc/spectrawizreader/issues
 Depends: R (>= 3.4.0)
 License: What license is it under?
 Encoding: UTF-8
-LazyData: true
+LazyData: TRUE
 RoxygenNote: 6.0.1
+Collate: 
+    'util.R'
+    'read-spectrawiz.R'
+    'spectrawizreader.R'
+    'trm-file.R'
