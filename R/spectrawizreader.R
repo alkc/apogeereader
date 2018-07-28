@@ -1,3 +1,5 @@
+#' @include process-spectra.R
+
 #' @title Simple loading of SpectraWiz output files in R.
 #'
 #' @description
