@@ -1,3 +1,6 @@
+#' @include util.R
+
+
 # Function for processing a single spectrawiz file
 process_file <- function(file) {
   file_contents <- scan(file, what = character(), sep = "\n",
