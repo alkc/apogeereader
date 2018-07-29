@@ -35,16 +35,10 @@ NULL
 #'
 #' @export
 read_spectrawiz <- function(file) {
-  multiple_files <- length(file) > 1
   # Yell at user if one or more files defined in file don't exist
   stop_if_files_are_missing(file)
-
-  if(isTRUE(multiple_files)) {
-    spectral_data <- lapply(file, process_file)
-    spectral_data <- do.call(rbind, spectral_data)
-  } else {
-    spectral_data <- process_spectra(file)
-  }
+  spectral_data <- lapply(file, process_spectra)
+  spectral_data <- do.call(rbind, spectral_data)
   spectral_data
 }
 
