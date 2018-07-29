@@ -24,7 +24,7 @@ NULL
 #'
 #' # Get the path to the demo file
 #'
-#' path_to_spectrawiz_file <- .trm_file()
+#' path_to_spectrawiz_file <- trm_file()
 #'
 #' # Example with one file name
 #'
@@ -48,7 +48,7 @@ read_spectrawiz <- function(file) {
   spectral_data
 }
 
-#' @name .trm_file
+#' @name trm_file
 #' @title Get file path of a sample SpectraWiz .TRM file
 #' @description This function returns a path to a sample file that you can use
 #' to test the \code{read_spectrawiz()} function.
@@ -56,10 +56,10 @@ read_spectrawiz <- function(file) {
 #' @return a character vector containing a file path to a sample file
 #' @examples
 #'
-#' path_to_spectrawiz_file <- .trm_file()
+#' path_to_spectrawiz_file <- trm_file()
 #' path_to_spectrawiz_file
 #' @export
-.trm_file <- function() {
+trm_file <- function() {
   system.file("extdata", "wheat.TRM", package = "spectrawizreader")
 }
 
