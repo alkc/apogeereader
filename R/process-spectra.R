@@ -20,15 +20,15 @@ process_spectra <- function(file) {
   file_contents <- do.call(rbind, file_contents)
 
   # Wavelengths are converted to char to be used as column names
-  wavelengths <- as.character(file_contents[,1])
+  wavelengths <- as.character(file_contents[, 1])
 
-  spectral_data <- t(as.double(file_contents[,2]))
+  spectral_data <- t(as.double(file_contents[, 2]))
   colnames(spectral_data) <- wavelengths
   spectral_data <- as.data.frame(spectral_data)
 
   # Add filename of loaded file as a column
   # TODO: Make filename column optional?
-  spectral_data <- cbind(data.frame(filename=file,stringsAsFactors = FALSE),
+  spectral_data <- cbind(data.frame(filename = file, stringsAsFactors = FALSE),
                          spectral_data)
 
   spectral_data
