@@ -2,7 +2,7 @@
 # better to just print one file in err msg, rather than all of them if many
 stop_if_files_are_missing <- function(file) {
   files_that_do_not_exist <- !file.exists(file)
-  if(isTRUE(sum(files_that_do_not_exist) > 0)) {
+  if (isTRUE(sum(files_that_do_not_exist) > 0)) {
     # TODO: Figure out something better instead of just printing first missing file
     first_nonexistent_file <- file[files_that_do_not_exist][1]
     error_message <- paste("No file exists at the specified path:",
@@ -16,13 +16,13 @@ stop_if_files_are_missing <- function(file) {
 # in a merged data frame where the spectral bands no longer are sorted
 # numerically.
 sort_spectral_data_columns <- function(merged_spectral_data) {
-  filename <- merged_spectral_data[,"filename"]
+  filename <- merged_spectral_data[, "filename"]
   # Remove filename column so we can sort remaining columns (spectral bands)
   # numerically:
   merged_spectral_data <- subset(merged_spectral_data, select = -c(filename))
   spectral_bands <- colnames(merged_spectral_data)
   numerical_sort_indices <- spectral_bands[order(as.numeric(spectral_bands))]
-  merged_spectral_data <- merged_spectral_data[,numerical_sort_indices]
+  merged_spectral_data <- merged_spectral_data[, numerical_sort_indices]
   merged_spectral_data <- cbind(filename, merged_spectral_data)
   merged_spectral_data
 }
