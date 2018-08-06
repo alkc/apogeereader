@@ -43,7 +43,7 @@ read_spectrawiz <- function(file, different_spectral_ranges=FALSE) {
   # Throw error if one or more files are missing
   stop_if_files_are_missing(file)
   spectral_data <- lapply(file, process_spectra)
-  if(isTRUE(length(file) > 1)) {
+  if (isTRUE(length(file) > 1)) {
     spectral_data <- do.call(rbind, spectral_data)
   }
   spectral_data
@@ -51,8 +51,9 @@ read_spectrawiz <- function(file, different_spectral_ranges=FALSE) {
 
 #' @name trm_file
 #' @title Get file path of a sample SpectraWiz .TRM file
-#' @description This function returns a path to a sample file that you can use
-#' to test the \code{read_spectrawiz()} function.
+#' @description This function returns a path to a sample file containing a
+#' spectral reading made on a winter wheat canopy, which you can use to test
+#' the \code{read_spectrawiz()} function.
 #' @author Alexander Koc
 #' @return a character vector containing a file path to a sample file
 #' @examples
