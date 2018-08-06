@@ -1,7 +1,6 @@
 #' @include util.R
 
-
-# Function for processing a single spectrawiz file
+# Internal function for processing a single spectrawiz file
 process_spectra <- function(file) {
   file_contents <- scan(file, what = character(), sep = "\n",
                         quiet = TRUE, comment.char = "\"")
@@ -11,7 +10,7 @@ process_spectra <- function(file) {
 
   # Split by a single space and remove any empty columns per row
   # TODO: Investigate if this is needed or if spectrawiz *always* uses the [...]
-  # ... same column delim spacing, if yes, adjust split arg accordingly and skip
+  # ... same column delim spacing
   file_contents <- strsplit(file_contents, split = " ")
   file_contents <- lapply(file_contents, function(entry) entry[!entry == ""])
 
@@ -21,7 +20,6 @@ process_spectra <- function(file) {
 
   # Wavelengths are converted to char to be used as column names
   wavelengths <- as.character(file_contents[, 1])
-
   spectral_data <- t(as.double(file_contents[, 2]))
   colnames(spectral_data) <- wavelengths
   spectral_data <- as.data.frame(spectral_data)
@@ -30,6 +28,5 @@ process_spectra <- function(file) {
   # TODO: Make filename column optional?
   spectral_data <- cbind(data.frame(filename = file, stringsAsFactors = FALSE),
                          spectral_data)
-
   spectral_data
 }
