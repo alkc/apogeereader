@@ -4,7 +4,8 @@
 #'
 #' @description
 #'
-#' Use the \code{read_spectrawiz()} to load SpectraWiz output files into wide format data frames in R.
+#' Use the \code{read_spectrawiz()} to load SpectraWiz output files into wide
+#' format data frames in R.
 #'
 #' @docType package
 #' @author Alexander Koc
@@ -19,14 +20,18 @@ NULL
 #' @export
 #' @author Alexander Koc
 #' @param file a vector of paths to SpectraWiz file(s)
-#' @return a \code{data.frame} of filenames and spectra associated with the input files in \code{file}
+#' @param different_spectral_ranges logical (TRUE/FALSE). Do the input files
+#' contain different spectral ranges? If yes set this to TRUE. If not leave as
+#' FALSE for faster performance. If you attempt to load files with different
+#' spectral ranges while this is set to false, spectrawizreader will stop with
+#' an error.
+#' @return a \code{data.frame} of filenames and spectra associated with the
+#' input files in \code{file}
 #' @examples
 #'
 #' # Get the path to the demo file
 #'
 #' path_to_spectrawiz_file <- trm_file()
-#'
-#' # Example with one file name
 #'
 #' spectral_data <- read_spectrawiz(path_to_spectrawiz_file)
 #'
@@ -34,11 +39,13 @@ NULL
 #' print(spectral_data[1,1:5])
 #'
 #' @export
-read_spectrawiz <- function(file) {
-  # Yell at user if one or more files defined in file don't exist
+read_spectrawiz <- function(file, different_spectral_ranges=FALSE) {
+  # Throw error if one or more files are missing
   stop_if_files_are_missing(file)
   spectral_data <- lapply(file, process_spectra)
-  spectral_data <- do.call(rbind, spectral_data)
+  if(isTRUE(length(file) > 1)) {
+    spectral_data <- do.call(rbind, spectral_data)
+  }
   spectral_data
 }
 
