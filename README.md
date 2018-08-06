@@ -1,17 +1,26 @@
 # spectrawizreader
 
+## Early development!
+
+This package is still in early development. Function names and such _might_ be 
+subject to change!
+
+The first stable version of this package will (hopefully) be available via CRAN.
+Until then, follow the instructions below to install the development version.
+
 ## Hello world!
 
-spectrawizreader is a package for reading files containing spectral measurements made
-using the Stellarnet SpectraWiz Spectrometer software. It is inspired by the
+spectrawizreader is a package for reading files containing spectral measurements 
+made using the Stellarnet SpectraWiz Spectrometer software. It is inspired by the
 [asdreader](https://github.com/cran/asdreader) package in its basic functionality.
 
 ## Installation 
 
-To install spectrawiz, please use the `install_github()` function from the 
+To install this development version of spectrawizreader, please use the 
+`install_github()` function from the  
 [devtools package](https://github.com/r-lib/devtools/), like so:
 
-```
+```{r}
 devtools::install_github("alkc/spectrawizreader")
 ```
 
@@ -19,7 +28,7 @@ devtools::install_github("alkc/spectrawizreader")
 
 ### Basic file input
 
-```
+```{r}
 # Get path to demo file included in the package:
 path_to_spectrawiz_file <- trm_file()
 
@@ -34,61 +43,45 @@ The first column in the `data.frame` returned by `read_spectrawiz` is always
 the filename associated with the input file. To remove it, just subset away
 the first column:
 
-```
+```{r}
 spectral_data <- spectral_data[,-1]
 ```
 
 ### Getting the wavelengths
 
-The wavelengths are stored in the column name of the returned `data.frame`. 
+The wavelengths are stored in the column names of the `data.frame` returned by
+`read_spectrawiz()`. 
 
-To extract them, call `colnames()` on the `data.frame` containing the spectral
-data, and then `as.numeric()`. 
+Use the base function `colnames()` to extract the wavelengths, followed by
+`as.numeric()` to convert the wavelength vector from characters to numbers.
 
-**Just remember to remove the `filename` column first!**
+Here is an example:
 
-```
+```{r}
 path_to_spectrawiz_file <- trm_file()
 spectral_data <- read_spectrawiz(path_to_spectrawiz_file)
 
 # The first column in spectral_data contains file paths, so we remove it 
 # before we extract the colnames
 wavelengths <- colnames(spectral_data[,-1])
+
+# The wavelengths are stored as characters in the column names. To convert them
+# back to numeric format, use as.numeric():
 wavelengths <- as.numeric(wavelengths)
+
+# Done!
+# Preview the first six values:
 head(wavelengths)
 # [1] 339.0 339.5 340.0 340.5 341.0 341.5
 ```
 
 ### Merging files containing different spectral ranges?
 
-spectrawizreader can take a vector of file paths as input and return a single 
-data frame containing the multiple spectra, provided that all files passed in
-to the same `read_spectrawiz` function call have the exact same spectral range.
+spectrawizreader supports reading and merging of spectrawiz files containing
+readings made in different spectral ranges.
 
-If you try to merge spectrawiz files with different spectral bands/ranges this 
-way, spectrawizreader will throw the following error:
+To do so, set the `different_spectral_ranges` to `TRUE`, like so:
 
+```{r}
+merged_spectral_data <- read_spectrawiz(paths_to_input_files, different_spectral_ranges = TRUE)
 ```
-Error in rbind(deparse.level, ...) : 
-  numbers of columns of arguments do not match
-```
-
-To work your way around this, use your vector of file paths in combination with
-`lapply` to create a list of unmerged data frames, and then use one of the
-solutions listed at the following [StackOverflow question dealing with merging data frames with different columns](https://stackoverflow.com/q/3402371)
-
-Here is my suggested way to do it, using dplyr's `bind_rows()` function:
-
-```
-# Create a vector of paths to your spectral files that you wish to merge:
-paths_to_spectrawiz_files <- c("path/to/file1.trm","path/to/file2.trm")
-
-# Create a list of unmerged data frames:
-unmerged_spectral_data <- lapply(path_to_spectrawiz_files, read_spectrawiz)
-
-# Merge list into a single data frame using bind_rows. 
-spectral_data <- dplyr::bind_rows(unmerged_spectral_data)
-```
-
-Rows that are missing data for some specific wavelength will contain `NA` values,
-as is customary.
