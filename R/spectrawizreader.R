@@ -40,12 +40,18 @@ NULL
 #'
 #' @export
 read_spectrawiz <- function(file, different_spectral_ranges=FALSE) {
-  # Throw error if one or more files are missing
+
+  # Throw error if one or more files are missing at specified path
   stop_if_files_are_missing(file)
-  spectral_data <- lapply(file, process_spectra)
-  if (isTRUE(length(file) > 1)) {
-    spectral_data <- do.call(rbind, spectral_data)
+
+    # No need for complicated merge and sort if there is only one input file:
+  if (isTRUE(length(file) == 1)) {
+    different_spectral_ranges <- FALSE
   }
+
+  # Filepaths to data frames:
+  spectral_data <- lapply(file, process_spectra)
+  spectral_data <- merge_spectra(spectral_data, different_spectral_ranges)
   spectral_data
 }
 
