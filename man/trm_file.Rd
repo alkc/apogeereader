@@ -10,8 +10,9 @@ trm_file()
 a character vector containing a file path to a sample file
 }
 \description{
-This function returns a path to a sample file that you can use
-to test the \code{read_spectrawiz()} function.
+This function returns a path to a sample file containing a
+spectral reading made on a winter wheat canopy, which you can use to test
+the \code{read_spectrawiz()} function.
 }
 \examples{
 

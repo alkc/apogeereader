@@ -30,8 +30,6 @@ containing the spectra and the file paths of the input files.
 
 path_to_spectrawiz_file <- trm_file()
 
-# Example with one file name
-
 spectral_data <- read_spectrawiz(path_to_spectrawiz_file)
 
 # Print the five first columns:
