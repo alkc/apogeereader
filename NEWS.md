@@ -1,5 +1,15 @@
 # CHANGELOG
 ## [Unreleased]
+
+### Added
+- Added read_spectrovision() for reading Apogee SpectroVision output
+
+### Changed
+- Changed name of package from spectrawizreader to apogeereader
+- Moved functions from spectrawizreader.R into own files
+
+## [0.1.0]
+
 ### Added
 - New function for reading one or more SpectraWiz files: read_spectrawiz()
 - Support for merging spectrawiz files with different spectral ranges
