@@ -2,4 +2,5 @@
 
 export(read_spectrawiz)
 export(read_spectrovision)
+export(spectrovision_file)
 export(trm_file)

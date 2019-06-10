@@ -22,11 +22,11 @@ input file  \code{file}
 
 # TODO: Update example
 
-path_to_spectrawiz_file <- trm_file()
+path_to_spectrovision_file <- spectrovision_file()
 
-spectral_data <- read_spectrawiz(path_to_spectrawiz_file)
+spectral_data <- read_spectrawiz(path_to_spectrovision_file)
 
-# Print the five first columns:
+# Print the first row and five first columns:
 print(spectral_data[1,1:5])
 
 }
