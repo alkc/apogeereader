@@ -28,6 +28,7 @@ read_spectrovision <- function(file) {
   colnames(spectral_data) <- data_header
   spectral_data <- .remove_non_data_rows(spectral_data)
   spectral_data <- .find_and_coerce_numeric_columns(spectral_data)
+  row.names(spectral_data) <- c()
   spectral_data
 }
 
