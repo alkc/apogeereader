@@ -38,9 +38,11 @@ read_spectrovision <- function(file) {
   columns <- seq(1, ncol(spectral_data))
   units_missing <- TRUE
 
+  # Return only the first Unit column.
+  # Will obviously have to be changed when support added for irregular
+  # spectral ranges in same file
   for (col_index in columns) {
     data_type <- spectral_data[2, col_index]
-
     if (data_type == "Units")  {
       units_missing <- FALSE
       break()
