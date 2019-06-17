@@ -1,4 +1,4 @@
-# spectrawizreader
+# apogreereader
 
 ## Early development!
 
@@ -10,9 +10,10 @@ Until then, follow the instructions below to install the development version.
 
 ## Hello world!
 
-spectrawizreader is a package for reading files containing spectral measurements 
-made using the Stellarnet SpectraWiz Spectrometer software. It is inspired by the
-[asdreader](https://github.com/cran/asdreader) package in its basic functionality.
+apogeereader is a package for reading files containing spectral measurements 
+made using the Stellarnet SpectraWiz and Spectrovision Spectroradiometer software. 
+It is inspired by the [asdreader](https://github.com/cran/asdreader) package 
+(for ASD Fieldspec data) in its basic functionality.
 
 ## Installation 
 
@@ -21,12 +22,14 @@ To install this development version of spectrawizreader, please use the
 [devtools package](https://github.com/r-lib/devtools/), like so:
 
 ```{r}
-devtools::install_github("alkc/spectrawizreader")
+devtools::install_github("alkc/apogeereader")
 ```
 
 ## Usage
 
-### Basic file input
+### Spectrawiz
+
+#### Basic file input
 
 ```{r}
 # Get path to demo file included in the package:
@@ -47,7 +50,7 @@ the first column:
 spectral_data <- spectral_data[,-1]
 ```
 
-### Getting the wavelengths
+#### Getting the wavelengths
 
 The wavelengths are stored in the column names of the `data.frame` returned by
 `read_spectrawiz()`. 
@@ -75,13 +78,33 @@ head(wavelengths)
 # [1] 339.0 339.5 340.0 340.5 341.0 341.5
 ```
 
-### Merging files containing different spectral ranges?
+### Spectrovision
 
-spectrawizreader supports reading and merging of spectrawiz files containing
-readings made in different spectral ranges.
-
-To do so, set the `different_spectral_ranges` to `TRUE`, like so:
+#### Basic file input
 
 ```{r}
-merged_spectral_data <- read_spectrawiz(paths_to_input_files, different_spectral_ranges = TRUE)
+spectrovision_file <- spectrovision_file()
+spectral_data <- read_spectrovision(spectrovision_file)
 ```
+The first column of the resulting `data.frame` is the timestamp
+associated with each measurement. If you wish to split the timestamp into
+separate `Date`, `Time` and `Sensor` for each row them set the `split_timestamp`
+argument to `TRUE` in `read_spectrovision`:
+
+```{r}
+spectrovision_file <- spectrovision_file()
+spectral_data <- read_spectrovision(spectrovision_file, split_timestamp = TRUE)
+```
+
+
+#### Merging multiple spectrovision files into a single `data.frame`
+
+```{r}
+library(purrr)
+
+spectrovision_files <- c(path_to_spectrovision_1, path_to_spectrovision_2, 
+path_to_spectrovision_3)
+
+spectral_data <- map_dfr(spectrovision_files, read_spectrovision)
+```
+

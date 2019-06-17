@@ -2,7 +2,7 @@ Package: apogeereader
 Title: Lightweight package for reading files produced by Apogee Spectrawiz and Spectrovision
 Version: 0.1.1.9000
 Authors@R: person("Alexander", "Koc", email = "alexander.koc@slu.se", role = c("aut", "cre"))
-Description: A package for reading spectral data obtained from SpectraWiz.
+Description: A package for reading spectral data obtained from Apogee SpectraWiz and Spectrovision.
 URL: http://github.com/alkc/apogeereader
 BugReports: http://github.com/alkc/apogeereader/issues
 Depends: R (>= 3.4.0)
