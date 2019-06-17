@@ -4,7 +4,7 @@
 \alias{read_spectrawiz}
 \title{Read one or more SpectraWiz output files into a dataframe}
 \usage{
-read_spectrawiz(file, different_spectral_ranges = FALSE)
+read_spectrawiz(file)
 }
 \arguments{
 \item{file}{a vector of paths to SpectraWiz file(s)}
