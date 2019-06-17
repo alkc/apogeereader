@@ -7,13 +7,7 @@
 read_spectrawiz(file)
 }
 \arguments{
-\item{file}{a vector of paths to SpectraWiz file(s)}
-
-\item{different_spectral_ranges}{logical (TRUE/FALSE). Do the input files
-contain different spectral ranges? If yes set this to TRUE. If not leave as
-FALSE for faster performance. If you attempt to load files with different
-spectral ranges while this is set to false, spectrawizreader will stop with
-an error.}
+\item{file}{a filepath to a SpectraWiz file}
 }
 \value{
 a \code{data.frame} of filenames and spectra associated with the
