@@ -4,10 +4,14 @@
 \alias{read_spectrovision}
 \title{Read one or more SpectraWiz output files into a dataframe}
 \usage{
-read_spectrovision(file)
+read_spectrovision(file, split_timestamp = FALSE)
 }
 \arguments{
 \item{file}{a vector of paths to SpectraWiz file(s)}
+
+\item{split_timestamp}{If \code{TRUE}, the timestamp of each measurement
+contained in \code{file} will be split into three character columns in the
+resulting \code{data.frame}: \code{date}, \code{time} and \code{sensor}.}
 }
 \value{
 a \code{data.frame} spectral data and any metadata associated with
