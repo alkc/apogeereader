@@ -86,9 +86,9 @@ read_spectrovision <- function(file, split_timestamp = FALSE) {
 .split_timestamp <- function(timestamp_column) {
   split_timestamps <- strsplit(unlist(timestamp_column), " ")
   split_timestamps <- lapply(split_timestamps, function(timestamp_row) {
-    data.frame(date = timestamp_row[2],
-               time = timestamp_row[1],
-               sensor = timestamp_row[3],
+    data.frame(Date = timestamp_row[2],
+               Time = timestamp_row[1],
+               Sensor = timestamp_row[3],
                stringsAsFactors = FALSE)
   })
 
