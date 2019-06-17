@@ -7,6 +7,9 @@
 #' @export
 #' @author Alexander Koc
 #' @param file a vector of paths to SpectraWiz file(s)
+#' @param split_timestamp If \code{TRUE}, the timestamp of each measurement
+#' contained in \code{file} will be split into three character columns in the
+#' resulting \code{data.frame}: \code{date}, \code{time} and \code{sensor}.
 #' @return a \code{data.frame} spectral data and any metadata associated with
 #' input file  \code{file}
 #' @examples
@@ -21,13 +24,21 @@
 #' print(spectral_data[1,1:5])
 #'
 #' @export
-read_spectrovision <- function(file) {
+read_spectrovision <- function(file, split_timestamp = FALSE) {
   spectral_data <- read.csv(file, stringsAsFactors = FALSE, header = FALSE)
   data_header <- .get_first_unit_column(spectral_data)
   spectral_data <- as.data.frame(t(spectral_data), stringsAsFactors = FALSE)
   colnames(spectral_data) <- data_header
   spectral_data <- .remove_non_data_rows(spectral_data)
   spectral_data <- .find_and_coerce_numeric_columns(spectral_data)
+
+  if (split_timestamp) {
+    timestamp_column <- spectral_data[,"Timestamp",drop = FALSE]
+    timestamp_column <- .split_timestamp(timestamp_column)
+    spectral_data <- spectral_data[,-1]
+    spectral_data <- cbind(timestamp_column, spectral_data)
+  }
+
   row.names(spectral_data) <- c()
   spectral_data
 }
@@ -70,4 +81,17 @@ read_spectrovision <- function(file) {
 .remove_non_data_rows <- function(spectral_data) {
   is_data_row <- !spectral_data[,1] == "Timestamp"
   spectral_data[is_data_row,]
+}
+
+.split_timestamp <- function(timestamp_column) {
+  split_timestamps <- strsplit(unlist(timestamp_column), " ")
+  split_timestamps <- lapply(split_timestamps, function(timestamp_row) {
+    data.frame(date = timestamp_row[2],
+               time = timestamp_row[1],
+               sensor = timestamp_row[3],
+               stringsAsFactors = FALSE)
+  })
+
+  split_timestamps <- do.call(rbind, split_timestamps)
+  split_timestamps
 }
