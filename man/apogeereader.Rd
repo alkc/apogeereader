@@ -3,7 +3,6 @@
 \docType{package}
 \name{apogeereader}
 \alias{apogeereader}
-\alias{apogeereader-package}
 \title{Simple loading of SpectraWiz output files in R.}
 \description{
 Use the \code{read_spectrawiz()} function to load SpectraWiz output files into
