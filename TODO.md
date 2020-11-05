@@ -8,4 +8,5 @@
 
 ## Low priority
 
+* CHANGE all roxygen @titles to capital case
 * ADD Normalization procedures of Continous Data CaptureSpectrovision

@@ -2,7 +2,8 @@
 ## [Unreleased]
 
 ### Added
-- Added read_spectrovision() for reading Apogee SpectroVision output
+- read_spectrovision() for reading Apogee SpectroVision output
+- get_spectrovision_metadata() to filter out metadata columns.
 
 ### Changed
 - Changed name of package from spectrawizreader to apogeereader
