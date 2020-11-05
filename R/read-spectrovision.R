@@ -18,7 +18,7 @@
 #'
 #' path_to_spectrovision_file <- spectrovision_file()
 #'
-#' spectral_data <- read_spectrawiz(path_to_spectrovision_file)
+#' spectral_data <- read_spectrovision(path_to_spectrovision_file)
 #'
 #' # Print the first row and five first columns:
 #' print(spectral_data[1,1:5])
@@ -83,6 +83,7 @@ read_spectrovision <- function(file, split_timestamp = FALSE) {
   spectral_data[is_data_row,]
 }
 
+# TODO: Should split into sensor and date-time object.
 .split_timestamp <- function(timestamp_column) {
   split_timestamps <- strsplit(unlist(timestamp_column), " ")
   split_timestamps <- lapply(split_timestamps, function(timestamp_row) {

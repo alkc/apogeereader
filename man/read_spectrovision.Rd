@@ -28,7 +28,7 @@ input file  \code{file}
 
 path_to_spectrovision_file <- spectrovision_file()
 
-spectral_data <- read_spectrawiz(path_to_spectrovision_file)
+spectral_data <- read_spectrovision(path_to_spectrovision_file)
 
 # Print the first row and five first columns:
 print(spectral_data[1,1:5])
