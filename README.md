@@ -43,7 +43,7 @@ print(spectral_data[,1:5])
 ```
 
 The first column in the `data.frame` returned by `read_spectrawiz` is always
-the filename associated with the input file. To remove it, just subset away
+the path associated with the input file. To remove it, just subset away
 the first column:
 
 ```{r}
@@ -95,9 +95,10 @@ argument to `TRUE` in `read_spectrovision`:
 spectrovision_file <- spectrovision_file()
 spectral_data <- read_spectrovision(spectrovision_file, split_timestamp = TRUE)
 ```
-
-
 #### Merging multiple spectrovision files into a single `data.frame`
+
+Built-in merging of multiple spectrovision files is not yet implemented. Until then, one easy way is to use the
+`map_dfr()` function from `purrr` and map the `read_spectrovision` function over each path.
 
 ```{r}
 library(purrr)
