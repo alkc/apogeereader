@@ -9,10 +9,11 @@ Depends: R (>= 3.4.0)
 License: GPL-3
 Encoding: UTF-8
 LazyData: TRUE
-RoxygenNote: 6.1.1
+RoxygenNote: 7.1.1
 Collate: 
     'apogeereader.R'
     'example-data.R'
+    'get-spectrovision-metadata.R'
     'util.R'
     'read-spectrawiz.R'
     'read-spectrovision.R'
