@@ -11,8 +11,8 @@ Until then, follow the instructions below to install the development version.
 ## Hello world!
 
 apogeereader is a package for reading files containing spectral measurements 
-made using the Stellarnet SpectraWiz and Spectrovision Spectroradiometer software. 
-It is inspired by the [asdreader](https://github.com/cran/asdreader) package 
+made using the Stellarnet SpectraWiz® Spectroscopy Software and Apogee Instruments, Inc.
+Spectrovision Spectroradiometer software. It is inspired by the [asdreader](https://github.com/cran/asdreader) package 
 (for ASD Fieldspec data) in its basic functionality.
 
 ## Installation 
